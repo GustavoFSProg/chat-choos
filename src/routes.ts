@@ -7,6 +7,8 @@ routes.get('/', (req: Request, res: Response) => {
   return res.status(200).json(`🧠 Api Template Running`)
 })
 
+// aaa
+
 routes.get('/get-users', userController.getUsers)
 routes.post('/create-user', userController.createUser)
 routes.put('/update-user/:id', userController.updateUser)
