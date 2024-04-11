@@ -7,15 +7,25 @@ const prismaDB = new PrismaClient()
 
 async function createUser(req: Request, res: Response) {
   try {
-    const user = await prismaDB.users.create({
-      data: {
-        name: req.body.name,
-        email: req.body.email,
-        password: String(md5(req.body.password, process.env.SECRET as string & { asBytes: true })),
-      },
+    const dataUser = await prismaDB.users.findFirst({
+      where: { email: req.body.email },
     })
 
-    return res.status(201).json({ user: user, message: 'Created user Success!!' })
+    if (dataUser) {
+      return res.status(200).json({ message: 'Email já cadastrado!!' })
+    } else {
+      const user = await prismaDB.users.create({
+        data: {
+          name: req.body.name,
+          email: req.body.email,
+          password: String(
+            md5(req.body.password, process.env.SECRET as string & { asBytes: true })
+          ),
+        },
+      })
+
+      return res.status(201).json({ user: user, message: 'Created user Success!!' })
+    }
   } catch (error) {
     return res.status(400).json({ error, message: 'ERROR!!' })
   }
