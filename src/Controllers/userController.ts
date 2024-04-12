@@ -89,7 +89,7 @@ async function Login(req: Request, res: Response) {
 
     const token = await generateToken(dados)
 
-    return res.status(201).send({ msg: 'Logado com sucesso!!', token })
+    return res.status(201).send({ msg: 'Logado com sucesso!!', token, login })
   } catch (error) {
     return res.status(400).send({ msg: 'Error!', error })
   }
