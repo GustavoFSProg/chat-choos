@@ -84,7 +84,7 @@ async function Login(req: Request, res: Response) {
     })
 
     if (!login) {
-      return res.status(200).send({ msg: 'ERRO no Login!!' })
+      return res.status(200).send({ errors: 'ERRO no Login!!' })
     }
 
     const token = await generateToken(dados)
