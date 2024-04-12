@@ -9,6 +9,7 @@ routes.get('/', (req: Request, res: Response) => {
 
 routes.get('/get-users', userController.getUsers)
 routes.get('/get-one-user/:id', userController.getOneUser)
+routes.get('/get-by-email/:email', userController.getByEmail)
 routes.post('/login', userController.Login)
 routes.post('/create-user', userController.createUser)
 routes.put('/update-user/:id', userController.updateUser)

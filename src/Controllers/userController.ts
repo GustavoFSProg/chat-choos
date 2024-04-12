@@ -12,7 +12,7 @@ async function createUser(req: Request, res: Response) {
     })
 
     if (dataUser) {
-      return res.status(200).json({ message: 'Email já cadastrado!!' })
+      return res.status(200).json({ error: 'Email já cadastrado!!' })
     } else {
       const user = await prismaDB.users.create({
         data: {
@@ -45,6 +45,18 @@ async function getOneUser(req: Request, res: Response) {
   try {
     const data = await prismaDB.users.findFirst({
       where: { id: req.params.id },
+    })
+
+    return res.status(201).json(data)
+  } catch (error) {
+    return res.status(400).json({ error, message: 'ERROR!!' })
+  }
+}
+
+async function getByEmail(req: Request, res: Response) {
+  try {
+    const data = await prismaDB.users.findFirst({
+      where: { email: req.params.email },
     })
 
     return res.status(201).json(data)
@@ -112,4 +124,4 @@ async function deleteUser(req: Request, res: Response) {
   }
 }
 
-export default { createUser, Login, getUsers, getOneUser, deleteUser, updateUser }
+export default { createUser, getByEmail, Login, getUsers, getOneUser, deleteUser, updateUser }
