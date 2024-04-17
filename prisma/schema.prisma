@@ -20,3 +20,9 @@ model Users {
   password  String
   createdAt DateTime @default(now())
 }
+
+model Chat {
+  id        String   @id @default(uuid()) @map("_id")
+  members   String[]
+  createdAt DateTime @default(now())
+}
