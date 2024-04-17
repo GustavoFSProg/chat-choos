@@ -50,7 +50,7 @@ async function getListUserChat(req: Request, res: Response) {
 
   try {
     const chat = await prismaDB.chat.findMany({
-      where: { userId1: firstId } as any,
+      where: { userId1: req.params.id } as any,
     })
 
     // const chat = await prismaDB.chat.findMany()
