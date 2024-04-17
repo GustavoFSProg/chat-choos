@@ -23,6 +23,7 @@ model Users {
 
 model Chat {
   id        String   @id @default(uuid()) @map("_id")
-  members   String[]
+  userId1   String
+  userId2   String
   createdAt DateTime @default(now())
 }
