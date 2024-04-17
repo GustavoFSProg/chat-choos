@@ -26,12 +26,31 @@ async function createChat(req: Request, res: Response) {
   }
 }
 
-async function getChat(req: Request, res: Response) {
+async function getUserChat(req: Request, res: Response) {
   const { firstId, secondId } = req.body
 
   try {
     const chat = await prismaDB.chat.findFirst({
       where: { userId1: firstId, userId2: secondId } as any,
+    })
+
+    // const chat = await prismaDB.chat.findMany()
+
+    // if (chat) return res.status(200).json(chat)
+
+    return res.status(201).json(chat)
+  } catch (error) {
+    console.log(error)
+    return res.status(400).json(error)
+  }
+}
+
+async function getListUserChat(req: Request, res: Response) {
+  const { firstId, secondId } = req.body
+
+  try {
+    const chat = await prismaDB.chat.findMany({
+      where: { userId1: firstId } as any,
     })
 
     // const chat = await prismaDB.chat.findMany()
@@ -73,4 +92,4 @@ async function deleteAll(req: Request, res: Response) {
   }
 }
 
-export default { createChat, getChat, getAllChat, deleteAll }
+export default { createChat, getUserChat, getListUserChat, getAllChat, deleteAll }

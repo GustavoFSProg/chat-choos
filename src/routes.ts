@@ -19,8 +19,9 @@ routes.delete('/delete-user/:id', userController.deleteUser)
 
 // chat
 routes.post('/create-chat', chatController.createChat)
-routes.get('/get-chat', chatController.getChat)
-routes.get('/get-all-chat', chatController.getAllChat)
+routes.get('/get-chat', chatController.getUserChat)
+routes.get('/get-all-chats', chatController.getAllChat)
+routes.get('/get-all-user-chats', chatController.getListUserChat)
 routes.delete('/delete-all-chat', chatController.deleteAll)
 
 export default routes
