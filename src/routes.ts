@@ -1,6 +1,7 @@
 import Router, { Request, Response } from 'express'
 import userController from './Controllers/userController'
 import chatController from './Controllers/chatController'
+import messageController from './Controllers/messageController'
 
 const routes = Router()
 
@@ -23,5 +24,9 @@ routes.get('/get-chat', chatController.getUserChat)
 routes.get('/get-all-chats', chatController.getAllChat)
 routes.get('/get-all-user-chats/:id', chatController.getListUserChat)
 routes.delete('/delete-all-chat', chatController.deleteAll)
+
+// messages
+routes.post('/create-message', messageController.createMessage)
+routes.get('/get-messages/:ID', messageController.getMessages)
 
 export default routes

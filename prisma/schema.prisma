@@ -27,3 +27,11 @@ model Chat {
   userId2   String
   createdAt DateTime @default(now())
 }
+
+model Messages {
+  id        String   @id @default(uuid()) @map("_id")
+  chatId    String
+  senderId  String
+  text      String
+  createdAt DateTime @default(now())
+}
