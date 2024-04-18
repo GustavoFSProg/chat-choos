@@ -68,13 +68,13 @@ async function getAllChat(req: Request, res: Response) {
   const { firstId, secondId } = req.body
 
   try {
-    const chat = await prismaDB.chat.findMany()
+    const data = await prismaDB.chat.findMany()
 
     // const chat = await prismaDB.chat.findMany()
 
     // if (chat) return res.status(200).json(chat)
 
-    return res.status(201).json(chat)
+    return res.status(201).json(data)
   } catch (error) {
     console.log(error)
     return res.status(400).json(error)
