@@ -34,10 +34,6 @@ async function getUserChat(req: Request, res: Response) {
       where: { userId1: firstId, userId2: secondId } as any,
     })
 
-    // const chat = await prismaDB.chat.findMany()
-
-    // if (chat) return res.status(200).json(chat)
-
     return res.status(201).json(chat)
   } catch (error) {
     console.log(error)
